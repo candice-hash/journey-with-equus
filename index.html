@@ -157,7 +157,7 @@
       <div class="modal-story" id="modalStory"></div>
       <div id="modalKillpen" style="display:none">
         <img class="modal-img-killpen" id="modalKillpenImg" src="" alt=""/>
-        <div class="modal-killpen-label">📍 Where the journey began</div>
+        <div class="modal-killpen-label" id="modalKillpenLabel">📍 Where the journey began</div>
       </div>
       </div>
       <div class="goal-box">
@@ -327,9 +327,10 @@ And slowly — in his own time, on his own terms — he is learning that people 
     age: "Approximately 15 Years Old",
     color: "Thoroughbred Mare · Bay",
     sponsored: false,
-    photo: "dazzled.jpg",
-    photoPosition: "center top",
-    killpenPhoto: "dazzled_killpen.jpg",
+    photo: "dazzled_killpen.jpg",
+    photoPosition: "center center",
+    killpenPhoto: "dazzled.jpg",
+    killpenLabel: "🌟 Dazzled today — healthy, loved, and home",
     monthlyGoal: "$700",
     goalDesc: "Covers feed, hay, specialized hoof care, veterinary monitoring, and daily sanctuary for Dazzled.",
     shortBio: "Found emaciated in a kill pen, Dazzled reached through the fence to love on a small child even as she was running out of time. That moment of connection saved her life. Today she is breathtakingly beautiful — and proof that advocacy changes everything.",
@@ -380,9 +381,10 @@ Dazzled is proof of what happens when someone refuses to stop asking.`
     age: "4-5 Years Old",
     color: "Miniature Horse Gelding · Dark Chocolate Palomino",
     sponsored: false,
-    photo: "sprinkles.jpg",
+    photo: "sprinkles_baby.jpg",
     photoPosition: "center center",
-    killpenPhoto: "sprinkles_baby.jpg",
+    killpenPhoto: "sprinkles.jpg",
+    killpenLabel: "🌟 Sprinkles and his dad Tater Tot today — inseparable",
     monthlyGoal: "$700",
     goalDesc: "Covers specialized feed, farrier care, veterinary monitoring, and daily sanctuary for Sprinkles.",
     shortBio: "Sprinkles didn't arrive at Journey With Equus the way most animals do. He arrived before he even existed — tucked safely inside his mama's belly. Born a dwarf with crooked legs, he is now the official ambassador of our barn.",
@@ -547,6 +549,7 @@ function openModal(id) {
   const killpenDiv = document.getElementById('modalKillpen');
   if (h.killpenPhoto) {
     document.getElementById('modalKillpenImg').src = h.killpenPhoto;
+    document.getElementById('modalKillpenLabel').textContent = h.killpenLabel || '📍 Where the journey began';
     killpenDiv.style.display = 'block';
   } else {
     killpenDiv.style.display = 'none';
