@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Journey With Equus — Meet the Herd</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f0e8d8;
+      --warm-white: #181008;
+      --earth: #c9a96e;
+      --saddle: #e8c98a;
+      --hay: #d4a843;
+      --sky: #7a9db5;
+      --sage: #3d7a52;
+      --dark: #0d0804;
+      --text: #f0e8d8;
+      --light-text: #c4b49a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--warm-white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom, rgba(44,31,14,0.55) 0%, rgba(44,31,14,0.2) 60%, var(--warm-white) 100%),
+        url('https://images.unsplash.com/photo-1553284965-5dd02b87378e?w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero-badge {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--hay);
+      border: 1px solid var(--hay);
+      padding: 0.4rem 1.2rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--hay);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,0.85);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .hero-legal {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.05em;
+      animation: fadeUp 1s 0.3s ease both;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--hay);
+      color: var(--dark);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      animation: fadeUp 1s 0.35s ease both;
+    }
+    .btn-primary:hover { background: var(--saddle); color: #fff; transform: translateY(-2px); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint svg { width: 20px; opacity: 0.6; }
+
+    /* ── MISSION STRIP ── */
+    .mission {
+      background: var(--earth);
+      color: #ffffff;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .mission p {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      font-weight: 400;
+    }
+    .mission p strong { font-weight: 700; color: #ffffff; text-decoration: underline; }
+
+    /* ── FILTERS ── */
+    .herd-section {
+      padding: 4rem 2rem 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--saddle);
+      margin-bottom: 0.5rem;
+    }
+    .section-header p {
+      color: var(--light-text);
+      font-size: 0.95rem;
+      font-weight: 300;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1.5px solid var(--hay);
+      color: var(--saddle);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--earth);
+      border-color: var(--earth);
+      color: var(--cream);
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .search-bar input {
+      width: 100%;
+      max-width: 420px;
+      padding: 0.75rem 1.2rem;
+      border: 1.5px solid #5a4020;
+      background: #2a1d0e;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      color: #f0e8d8;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-bar input:focus { border-color: var(--hay); }
+    .search-bar input::placeholder { color: #7a6040; }
+
+    /* ── HORSE GRID ── */
+    .horse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .horse-card {
+      background: #2a1d0e;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      position: relative;
+      animation: fadeUp 0.6s ease both;
+    }
+    .horse-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(44,31,14,0.18);
+    }
+
+    .horse-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+    .horse-card:hover .horse-card-img { transform: scale(1.04); }
+
+    .horse-card-img-wrap { overflow: hidden; position: relative; }
+
+    .species-tag {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      background: var(--earth);
+      color: var(--cream);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+    }
+
+    .sponsored-tag {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      background: var(--sage);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+    }
+
+    .horse-card-body {
+      padding: 1.2rem 1.4rem 1.5rem;
+    }
+    .horse-card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--saddle);
+      margin-bottom: 0.2rem;
+    }
+    .horse-meta {
+      font-size: 0.75rem;
+      color: var(--light-text);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .horse-card-body p {
+      font-size: 0.88rem;
+      color: #e8dcc8;
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .btn-sponsor {
+      display: block;
+      width: 100%;
+      background: var(--hay);
+      color: var(--dark);
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-sponsor:hover { background: var(--saddle); color: #fff; }
+    .btn-sponsor.sponsored { background: var(--sage); color: #fff; cursor: default; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(44,31,14,0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: #2a1d0e;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeUp 0.3s ease;
+    }
+    .modal-img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+    .modal-body { padding: 2rem 2.5rem 2.5rem; }
+    .modal-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--saddle);
+      margin-bottom: 0.3rem;
+    }
+    .modal-meta {
+      font-size: 0.78rem;
+      color: var(--light-text);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid #4a3520;
+    }
+    .modal-story {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: #e8dcc8;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .modal-donate-box {
+      background: #1a1208;
+      padding: 1.5rem;
+      text-align: center;
+      border-left: 4px solid var(--hay);
+    }
+    .modal-donate-box p {
+      font-size: 0.85rem;
+      color: var(--light-text);
+      margin-bottom: 1rem;
+    }
+    .modal-donate-box .btn-primary { animation: none; }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(44,31,14,0.6);
+      color: #fff;
+      border: none;
+      width: 36px;
+      height: 36px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--earth); }
+
+    /* ── NO RESULTS ── */
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--light-text);
+      font-style: italic;
+      display: none;
+      grid-column: 1/-1;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 6rem;
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.78rem;
+      line-height: 1.9;
+      letter-spacing: 0.03em;
+    }
+    footer strong { color: var(--hay); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    @media (max-width: 600px) {
+      .modal-body { padding: 1.5rem; }
+      .horse-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-badge">Equine Rescue &amp; Sanctuary</div>
+  <h1>Journey<br/><em>With Equus</em></h1>
+  <p class="hero-sub">Every animal here has a story. Every story deserves a chance. Sponsor one of our rescued horses, mules, donkeys, and ponies — and change a life forever.</p>
+  <p class="hero-legal">Liberty's Legacy Inc. DBA Journey With Equus &nbsp;|&nbsp; 501(c)(3) Non-Profit &nbsp;|&nbsp; Tax ID: 47-4878985</p>
+  <a href="#herd" class="btn-primary">Meet the Herd</a>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- ── MISSION ── -->
+<div class="mission">
+  <p>Journey With Equus exists to raise awareness around <strong>the gifts horses have to give beyond the saddle</strong> — through equine partnered wellness. These are horses, mules, donkeys, and ponies who, due to age, health, or injury, can no longer be ridden or compete. They come to us. They find safety. They heal. And in return, <strong>they help humans heal too.</strong> Every animal here receives a lifetime of sanctuary, love, and purpose. Your sponsorship makes that possible.</p>
+</div>
+
+<!-- ── HERD ── -->
+<section class="herd-section" id="herd">
+  <div class="section-header">
+    <h2>Meet Our Herd</h2>
+    <p>Click any animal to read their full story and sponsor them.</p>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search by name…" oninput="filterHerd()"/>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="setFilter('all', this)">All Animals</button>
+    <button class="filter-btn" onclick="setFilter('horse', this)">Horses</button>
+    <button class="filter-btn" onclick="setFilter('mule', this)">Mules</button>
+    <button class="filter-btn" onclick="setFilter('donkey', this)">Donkeys</button>
+    <button class="filter-btn" onclick="setFilter('pony', this)">Ponies</button>
+    <button class="filter-btn" onclick="setFilter('other', this)">Other Animals</button>
+    <button class="filter-btn" onclick="setFilter('needs-sponsor', this)">Needs Sponsor</button>
+  </div>
+
+  <div class="horse-grid" id="horseGrid"></div>
+</section>
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <img class="modal-img" id="modalImg" src="" alt=""/>
+    <div class="modal-body">
+      <h2 id="modalName"></h2>
+      <div class="modal-meta" id="modalMeta"></div>
+      <div class="modal-story" id="modalStory"></div>
+      <div class="modal-donate-box">
+        <p>Your monthly sponsorship covers feed, farrier visits, and veterinary care for <span id="modalNameInline"></span>.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a id="modalPaypalBtn" href="#" target="_blank" class="btn-primary" style="background:#003087;color:#fff;text-decoration:none;">💙 Donate via PayPal</a>
+          <a id="modalVenmoBtn" href="#" target="_blank" class="btn-primary" style="background:#008CFF;color:#fff;text-decoration:none;">Donate via Venmo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <strong>Journey With Equus</strong><br/>
+  Liberty's Legacy Inc. DBA Journey With Equus &nbsp;|&nbsp; 501(c)(3) Non-Profit Organization<br/>
+  Tax ID (EIN): 47-4878985 &nbsp;|&nbsp; All donations are tax-deductible to the extent permitted by law.<br/><br/>
+  <span style="font-size:0.7rem;">Questions? Contact us at [YOUR EMAIL] &nbsp;|&nbsp; [YOUR PHONE]</span>
+</footer>
+
+<script>
+  // ─────────────────────────────────────────────
+  // HORSE DATA
+  // This is where each horse lives.
+  // To add a new horse, copy one block and fill it in.
+  // "donateLink" will be your PayPal/Venmo link for that horse.
+  // ─────────────────────────────────────────────
+  const horses = [
+    {
+      id: 1,
+      name: "Bella",
+      species: "horse",
+      age: "12 years",
+      color: "Bay Mare",
+      sponsored: false,
+      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
+      venmoLink: "https://venmo.com/JourneyWithEquus",
+      photo: "https://images.unsplash.com/photo-1534773728080-33d31da27ae5?w=600&q=80",
+      shortBio: "Bella arrived at our sanctuary severely malnourished, unable to stand on her own. Today she is one of the most affectionate horses in our herd.",
+      fullStory: "Bella came to us in the winter of 2022, found abandoned in a field with no food or water for weeks. She was barely able to stand, her ribs visible through her dull coat. Our team worked around the clock to nurse her back to health with careful feeding, veterinary care, and most importantly — love.\n\nToday, Bella is unrecognizable from the horse we first met. She greets every visitor at the fence with soft nuzzles and has become the unofficial welcoming committee of Journey With Equus. She adores children and has participated in our therapeutic riding program.\n\nYour sponsorship of $50/month covers Bella's monthly hay, grain, and farrier visits. She still has trust issues with new people, but with patience, she shows you her whole heart."
+    },
+    {
+      id: 2,
+      name: "Scout",
+      species: "horse",
+      age: "7 years",
+      color: "Chestnut Gelding",
+      sponsored: false,
+      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
+      photo: "https://images.unsplash.com/photo-1598974357801-cbca100e65d3?w=600&q=80",
+      shortBio: "Scout was seized from a neglect case along with 14 other horses. He's young, playful, and full of energy — he just needs someone in his corner.",
+      fullStory: "Scout was one of 15 horses removed from a property by animal control in 2023. At just 5 years old, he had never been properly handled and was terrified of humans. Through months of patient groundwork and gentle training, Scout transformed into a curious, playful young horse who loves to investigate everything.\n\nHe is currently being trained for light trail riding and has shown an incredible aptitude for learning. Our trainers believe he has the potential to become a therapy horse, given his sensitivity and intelligence.\n\nScout represents the best of what rescue can do — a second chance that becomes a first-class life. Sponsor him for $50/month and help us see just how far he can go."
+    },
+    {
+      id: 3,
+      name: "Dolly",
+      species: "donkey",
+      age: "9 years",
+      color: "Grey Jenny",
+      sponsored: true,
+      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
+      photo: "https://images.unsplash.com/photo-1567611104868-6bee7e283f15?w=600&q=80",
+      shortBio: "Dolly the donkey arrived with overgrown hooves so severe she could barely walk. Now she's the loudest, most lovable personality in the whole sanctuary.",
+      fullStory: "You will hear Dolly before you see her. Her bray echoes across the entire property — a sound that used to represent pain, and now represents pure joy.\n\nDolly arrived with hooves that had gone untrimmed for years, curling upward like elf shoes. The farrier visits that first month were intensive and costly, but Dolly tolerated everything with a stoic patience that amazed us all.\n\nShe is now fully sponsored, but we share her story because she is the heart of our sanctuary. Dolly has bonded deeply with two young mules who arrived frightened and withdrawn — her calm, maternal presence helped them settle faster than any training could."
+    },
+    {
+      id: 4,
+      name: "Major",
+      species: "mule",
+      age: "15 years",
+      color: "Black Mule",
+      sponsored: false,
+      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
+      photo: "https://images.unsplash.com/photo-1553284966-19b8815c7817?w=600&q=80",
+      shortBio: "Major is a big, wise old mule who spent his life working. Now it's our turn to take care of him. He deserves every bit of comfort his senior years can bring.",
+      fullStory: "Major is the elder statesman of Journey With Equus. Estimated at 15 years old, he carries the quiet dignity of an animal who has worked hard his whole life. He was surrendered by a family who could no longer afford his care, and arrived thin but otherwise healthy.\n\nHe doesn't ask for much — a good pile of hay, a gentle scratch behind his long ears, and the company of other animals. He has become a calming anchor for nervous new arrivals, and the younger horses often sleep near him.\n\nAs a senior animal, Major's needs will grow over time. Sponsoring him at $65/month helps us prepare for his veterinary needs as he ages gracefully in the safety of our sanctuary."
+    },
+    {
+      id: 5,
+      name: "Clover",
+      species: "pony",
+      age: "4 years",
+      color: "Palomino Filly",
+      sponsored: false,
+      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
+      photo: "https://images.unsplash.com/photo-1590249336329-cb5a4d9c9a59?w=600&q=80",
+      shortBio: "Clover is our youngest resident — a golden little pony with a personality three times her size. She came to us as an orphan foal and has never known anything but love.",
+      fullStory: "Clover was orphaned at just three weeks old when her mother was unable to survive a difficult birth. She was brought to us by a good Samaritan who found her alone in a pasture, and our team immediately began around-the-clock bottle feeding.\n\nShe imprinted on humans in the best possible way — she sees every person who enters the sanctuary as a potential friend (and snack-giver). Her boldness and curiosity make her a favorite with visitors, though she has a mischievous streak and has been known to untie lead ropes and open latches.\n\nClover will grow into a riding pony and we hope she will one day participate in our youth horsemanship program. Sponsor her for $40/month and watch her grow up!"
+    },
+    {
+      id: 6,
+      name: "Rio",
+      species: "horse",
+      age: "10 years",
+      color: "Grey Gelding",
+      sponsored: false,
+      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
+      photo: "https://images.unsplash.com/photo-1534773728080-33d31da27ae5?w=600&q=80",
+      shortBio: "Rio was used as a breeding stallion and kept isolated his whole life. Learning to be a horse — to play, graze, and have friends — has been his greatest journey.",
+      fullStory: "Rio spent the first decade of his life alone in a stall, used only for breeding and never experiencing the simple joys of being a horse in a herd. When we received him after his former owner's operation was shut down, he didn't know how to interact with other horses — he was fearful, defensive, and deeply lonely.\n\nThe transformation over 18 months has been extraordinary. Watching Rio take his first rolling nap in the sun, or engage in mutual grooming with another gelding for the first time, reminded all of us why this work matters.\n\nRio is now a confident, gentle soul who loves long grooming sessions and carrots. He is a testament to resilience. Your $50/month sponsorship helps us continue his journey."
+    }
+  ];
+
+  // ─────────────────────────────────────────────
+  // RENDER & FILTER LOGIC
+  // ─────────────────────────────────────────────
+  let currentFilter = 'all';
+
+  function renderGrid(list) {
+    const grid = document.getElementById('horseGrid');
+    grid.innerHTML = '';
+    if (list.length === 0) {
+      grid.innerHTML = '<p class="no-results" style="display:block;grid-column:1/-1;">No animals found. Try a different search!</p>';
+      return;
+    }
+    list.forEach((h, i) => {
+      const card = document.createElement('div');
+      card.className = 'horse-card';
+      card.style.animationDelay = `${i * 0.07}s`;
+      card.innerHTML = `
+        <div class="horse-card-img-wrap">
+          <img class="horse-card-img" src="${h.photo}" alt="${h.name}" loading="lazy"/>
+          <span class="species-tag">${h.species}</span>
+          ${h.sponsored ? '<span class="sponsored-tag">✓ Sponsored</span>' : ''}
+        </div>
+        <div class="horse-card-body">
+          <h3>${h.name}</h3>
+          <div class="horse-meta">${h.color} &nbsp;·&nbsp; ${h.age}</div>
+          <p>${h.shortBio}</p>
+          <button class="btn-sponsor ${h.sponsored ? 'sponsored' : ''}"
+            onclick="openModal(${h.id})"
+            ${h.sponsored ? '' : ''}>
+            ${h.sponsored ? '✓ Fully Sponsored' : `Sponsor ${h.name}`}
+          </button>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  function filterHerd() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    let list = horses;
+    if (currentFilter === 'needs-sponsor') list = list.filter(h => !h.sponsored);
+    else if (currentFilter === 'other') list = list.filter(h => !['horse','mule','donkey','pony'].includes(h.species));
+    else if (currentFilter !== 'all') list = list.filter(h => h.species === currentFilter);
+    if (query) list = list.filter(h => h.name.toLowerCase().includes(query));
+    renderGrid(list);
+  }
+
+  function setFilter(type, btn) {
+    currentFilter = type;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterHerd();
+  }
+
+  // ─────────────────────────────────────────────
+  // MODAL
+  // ─────────────────────────────────────────────
+  function openModal(id) {
+    const h = horses.find(x => x.id === id);
+    if (!h) return;
+    document.getElementById('modalImg').src = h.photo;
+    document.getElementById('modalImg').alt = h.name;
+    document.getElementById('modalName').textContent = h.name;
+    document.getElementById('modalMeta').textContent = `${h.species.charAt(0).toUpperCase()+h.species.slice(1)} · ${h.color} · ${h.age}`;
+    document.getElementById('modalStory').innerHTML = h.fullStory.split('\n\n').map(p => `<p style="margin-bottom:1rem">${p}</p>`).join('');
+    document.getElementById('modalNameInline').textContent = h.name;
+    const paypalBtn = document.getElementById('modalPaypalBtn');
+    const venmoBtn = document.getElementById('modalVenmoBtn');
+    if (h.sponsored) {
+      paypalBtn.textContent = '✓ Fully Sponsored — Thank You!';
+      paypalBtn.style.background = '#3d7a52';
+      paypalBtn.style.pointerEvents = 'none';
+      venmoBtn.style.display = 'none';
+    } else {
+      paypalBtn.href = h.donateLink || '#';
+      paypalBtn.innerHTML = '💙 Donate via PayPal';
+      paypalBtn.style.background = '#003087';
+      paypalBtn.style.pointerEvents = '';
+      venmoBtn.href = h.venmoLink || '#';
+      venmoBtn.innerHTML = 'Donate via Venmo';
+      venmoBtn.style.display = '';
+    }
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+  }
+  function closeModalDirect() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
+  // Init
+  renderGrid(horses);
+</script>
+</body>
+</html>
