@@ -64,7 +64,7 @@
     .horse-card { background: #2a1d0e; box-shadow: 0 2px 16px rgba(0,0,0,0.4); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; position: relative; animation: fadeUp 0.6s ease both; }
     .horse-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
     .horse-card-img-wrap { overflow: hidden; position: relative; }
-    .horse-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top; display: block; transition: transform 0.5s; }
+    .horse-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; display: block; transition: transform 0.5s; }
     .horse-card:hover .horse-card-img { transform: scale(1.04); }
     .species-tag { position: absolute; top: 0.8rem; left: 0.8rem; background: var(--earth); color: #fff; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.7rem; }
     .sponsored-tag { position: absolute; top: 0.8rem; right: 0.8rem; background: var(--sage); color: #fff; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; }
@@ -160,6 +160,7 @@
         <img class="modal-img-killpen" id="modalKillpenImg" src="" alt=""/>
         <div class="modal-killpen-label">📍 Where the journey began</div>
       </div>
+      </div>
       <div class="goal-box">
         <div class="goal-label">Monthly Sponsorship Goal</div>
         <div class="goal-amount" id="modalGoal"></div>
@@ -200,6 +201,7 @@ const horses = [
     color: "Morgan Gelding · Black",
     sponsored: false,
     photo: "tux.jpg",
+    photoPosition: "center top",
     monthlyGoal: "$700",
     goalDesc: "Covers feed, hay, veterinary care, farrier visits, and daily sanctuary for Tux.",
     shortBio: "Tux came within days of never being known at all. Pulled from a kill pen in Northern Colorado, this stunning black Morgan is now one of our featured equine coaching partners — and he has a particular gift with children.",
@@ -227,6 +229,7 @@ He made it. And now he helps others do the same.`
     color: "Morgan Gelding · Bay",
     sponsored: false,
     photo: "lucien.jpg",
+    photoPosition: "center 20%",
     monthlyGoal: "$700",
     goalDesc: "Covers feed, hay, veterinary care, farrier visits, and daily sanctuary for Lucien.",
     shortBio: "Lucien's story begins exactly where Tux's does. Pulled from the same kill pen, this big beautiful bay Morgan is now one of our featured equine coaching partners — and the first one to meet everybody at the fence.",
@@ -250,6 +253,7 @@ He came to us from the edge of the unthinkable. Now he stands at the fence every
     color: "Stallion · Possibly Morgan, Arabian, or Spanish Barb · Dark Bay",
     sponsored: false,
     photo: "versailles.jpg",
+    photoPosition: "center center",
     monthlyGoal: "$700",
     goalDesc: "Covers feed, hay, veterinary care, specialized senior care, and daily sanctuary for Versailles.",
     shortBio: "Versailles is our only stallion — regal, gentle, and a survivor. Pulled from a massive kill pen alongside his brother, this possible Spanish Barb has not a mean bone in his body. He is now living the retirement he always deserved.",
@@ -285,6 +289,7 @@ Versailles didn't get the life he deserved in his early years. He gets it now.`
     color: "Morgan Gelding · Dark Bay · Special Needs",
     sponsored: false,
     photo: "othello.jpg",
+    photoPosition: "center 15%",
     monthlyGoal: "$700",
     goalDesc: "Covers feed, hay, specialized Cushing's management, holistic care, farrier visits, and daily sanctuary for Othello.",
     shortBio: "A well-known Morgan show horse whose years in the ring left him more scarred than celebrated. Othello now stalls next to Versailles and is slowly learning — on his own terms — that people can be safe after all.",
@@ -324,6 +329,7 @@ And slowly — in his own time, on his own terms — he is learning that people 
     color: "Thoroughbred Mare · Bay",
     sponsored: false,
     photo: "dazzled.jpg",
+    photoPosition: "center top",
     killpenPhoto: "dazzled_killpen.jpg",
     monthlyGoal: "$700",
     goalDesc: "Covers feed, hay, specialized hoof care, veterinary monitoring, and daily sanctuary for Dazzled.",
@@ -376,6 +382,7 @@ Dazzled is proof of what happens when someone refuses to stop asking.`
     color: "Miniature Horse Gelding · Dark Chocolate Palomino",
     sponsored: false,
     photo: "sprinkles.jpg",
+    photoPosition: "center center",
     killpenPhoto: "sprinkles_baby.jpg",
     monthlyGoal: "$700",
     goalDesc: "Covers specialized feed, farrier care, veterinary monitoring, and daily sanctuary for Sprinkles.",
@@ -418,6 +425,7 @@ Sprinkles aka Dinky — born against the odds, raised by a village, and now the 
     color: "Miniature Horse Gelding · Black and White Paint",
     sponsored: false,
     photo: "tatertot.jpg",
+    photoPosition: "center center",
     monthlyGoal: "$700",
     goalDesc: "Covers feed, farrier care, veterinary care, and daily sanctuary for Tater Tot.",
     shortBio: "Tater Tot came to us from a Mississippi kill pen — one of five miniature horses we rescued. We are 99% certain this bold little black and white paint is Sprinkles' father. And here at Journey With Equus, this family never has to be separated.",
@@ -443,6 +451,7 @@ We think that says everything.`
     color: "Paint Mare · Black and White",
     sponsored: false,
     photo: "eclipse.jpg",
+    photoPosition: "center 20%",
     monthlyGoal: "$700",
     goalDesc: "Covers feed, hay, veterinary monitoring, holistic pain management, farrier care, and daily sanctuary for Eclipse.",
     shortBio: "Eclipse came to us straight from auction — never having to know a kill pen. For years she lived her best life in our large pasture herd. Now she's in our barn as we work tirelessly to find answers for her knee. She has opinions about grain time and she will make sure everyone knows it.",
@@ -488,7 +497,7 @@ function renderGrid(list) {
     card.style.animationDelay = `${i * 0.07}s`;
     card.innerHTML = `
       <div class="horse-card-img-wrap">
-        <img class="horse-card-img" src="${h.photo}" alt="${h.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1553284965-5dd02b87378e?w=600&q=80'"/>
+        <img class="horse-card-img" src="${h.photo}" alt="${h.name}" loading="lazy" style="object-position:${h.photoPosition || 'center center'}" onerror="this.src='https://images.unsplash.com/photo-1553284965-5dd02b87378e?w=600&q=80'"/>
         <span class="species-tag">${h.species}</span>
         ${h.sponsored ? '<span class="sponsored-tag">✓ Sponsored</span>' : ''}
       </div>
