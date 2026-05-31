@@ -7,438 +7,111 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --cream: #f0e8d8;
       --warm-white: #181008;
       --earth: #c9a96e;
       --saddle: #e8c98a;
       --hay: #d4a843;
-      --sky: #7a9db5;
       --sage: #3d7a52;
       --dark: #0d0804;
       --text: #f0e8d8;
       --light-text: #c4b49a;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; background-color: var(--warm-white); color: var(--text); overflow-x: hidden; }
 
-    body {
-      font-family: 'Lato', sans-serif;
-      background-color: var(--warm-white);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       min-height: 100vh;
-      background:
-        linear-gradient(to bottom, rgba(44,31,14,0.55) 0%, rgba(44,31,14,0.2) 60%, var(--warm-white) 100%),
+      background: linear-gradient(to bottom, rgba(13,8,4,0.65) 0%, rgba(13,8,4,0.3) 60%, var(--warm-white) 100%),
         url('https://images.unsplash.com/photo-1553284965-5dd02b87378e?w=1600&q=80') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 2rem; position: relative;
     }
-
-    .hero-badge {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--hay);
-      border: 1px solid var(--hay);
-      padding: 0.4rem 1.2rem;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 0.5rem;
-      animation: fadeUp 0.9s 0.1s ease both;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--hay);
-    }
-
-    .hero-sub {
-      font-size: clamp(0.95rem, 2vw, 1.15rem);
-      color: rgba(255,255,255,0.85);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-      animation: fadeUp 1s 0.2s ease both;
-    }
-
-    .hero-legal {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 0.05em;
-      animation: fadeUp 1s 0.3s ease both;
-      margin-bottom: 2rem;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background: var(--hay);
-      color: var(--dark);
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 1rem 2.5rem;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-      animation: fadeUp 1s 0.35s ease both;
-    }
+    .hero-badge { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--hay); border: 1px solid var(--hay); padding: 0.4rem 1.2rem; margin-bottom: 1.5rem; animation: fadeUp 0.8s ease both; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 7vw, 5.5rem); color: #fff; line-height: 1.1; margin-bottom: 0.5rem; animation: fadeUp 0.9s 0.1s ease both; }
+    .hero h1 em { font-style: italic; color: var(--hay); }
+    .hero-sub { font-size: clamp(0.95rem, 2vw, 1.15rem); color: rgba(255,255,255,0.88); max-width: 560px; line-height: 1.7; margin-bottom: 2rem; font-weight: 300; animation: fadeUp 1s 0.2s ease both; }
+    .hero-legal { font-size: 0.72rem; color: rgba(255,255,255,0.6); letter-spacing: 0.05em; animation: fadeUp 1s 0.3s ease both; margin-bottom: 2rem; }
+    .btn-primary { display: inline-block; background: var(--hay); color: var(--dark); font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; padding: 1rem 2.5rem; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; animation: fadeUp 1s 0.35s ease both; }
     .btn-primary:hover { background: var(--saddle); color: #fff; transform: translateY(-2px); }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      animation: bounce 2s infinite;
-    }
+    .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: rgba(255,255,255,0.5); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; animation: bounce 2s infinite; }
     .scroll-hint svg { width: 20px; opacity: 0.6; }
 
-    /* ── MISSION STRIP ── */
-    .mission {
-      background: var(--earth);
-      color: #ffffff;
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-    .mission p {
-      max-width: 680px;
-      margin: 0 auto;
-      font-size: 1.05rem;
-      line-height: 1.8;
-      font-weight: 400;
-    }
-    .mission p strong { font-weight: 700; color: #ffffff; text-decoration: underline; }
+    /* MISSION */
+    .mission { background: var(--earth); color: #ffffff; text-align: center; padding: 3rem 2rem; }
+    .mission p { max-width: 700px; margin: 0 auto; font-size: 1.05rem; line-height: 1.85; font-weight: 400; }
+    .mission p strong { font-weight: 700; text-decoration: underline; }
 
-    /* ── FILTERS ── */
-    .herd-section {
-      padding: 4rem 2rem 2rem;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
+    /* HERD */
+    .herd-section { padding: 4rem 2rem 2rem; max-width: 1300px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 2.5rem; }
+    .section-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--saddle); margin-bottom: 0.5rem; }
+    .section-header p { color: var(--light-text); font-size: 0.95rem; font-weight: 300; }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    .section-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--saddle);
-      margin-bottom: 0.5rem;
-    }
-    .section-header p {
-      color: var(--light-text);
-      font-size: 0.95rem;
-      font-weight: 300;
-    }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2.5rem; }
+    .filter-btn { background: transparent; border: 1.5px solid var(--hay); color: var(--saddle); font-family: 'Lato', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 1.2rem; cursor: pointer; transition: all 0.2s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--earth); border-color: var(--earth); color: #fff; }
 
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      justify-content: center;
-      margin-bottom: 2.5rem;
-    }
-    .filter-btn {
-      background: transparent;
-      border: 1.5px solid var(--hay);
-      color: var(--saddle);
-      font-family: 'Lato', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.5rem 1.2rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--earth);
-      border-color: var(--earth);
-      color: var(--cream);
-    }
-
-    .search-bar {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 3rem;
-    }
-    .search-bar input {
-      width: 100%;
-      max-width: 420px;
-      padding: 0.75rem 1.2rem;
-      border: 1.5px solid #5a4020;
-      background: #2a1d0e;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.9rem;
-      color: #f0e8d8;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .search-bar { display: flex; justify-content: center; margin-bottom: 3rem; }
+    .search-bar input { width: 100%; max-width: 420px; padding: 0.75rem 1.2rem; border: 1.5px solid #5a4020; background: #2a1d0e; font-family: 'Lato', sans-serif; font-size: 0.9rem; color: #f0e8d8; outline: none; transition: border-color 0.2s; }
     .search-bar input:focus { border-color: var(--hay); }
     .search-bar input::placeholder { color: #7a6040; }
 
-    /* ── HORSE GRID ── */
-    .horse-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .horse-card {
-      background: #2a1d0e;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.4);
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-      position: relative;
-      animation: fadeUp 0.6s ease both;
-    }
-    .horse-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(44,31,14,0.18);
-    }
-
-    .horse-card-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s;
-    }
-    .horse-card:hover .horse-card-img { transform: scale(1.04); }
-
+    /* GRID */
+    .horse-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+    .horse-card { background: #2a1d0e; box-shadow: 0 2px 16px rgba(0,0,0,0.4); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; position: relative; animation: fadeUp 0.6s ease both; }
+    .horse-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
     .horse-card-img-wrap { overflow: hidden; position: relative; }
-
-    .species-tag {
-      position: absolute;
-      top: 0.8rem;
-      left: 0.8rem;
-      background: var(--earth);
-      color: var(--cream);
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.7rem;
-    }
-
-    .sponsored-tag {
-      position: absolute;
-      top: 0.8rem;
-      right: 0.8rem;
-      background: var(--sage);
-      color: #fff;
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.7rem;
-    }
-
-    .horse-card-body {
-      padding: 1.2rem 1.4rem 1.5rem;
-    }
-    .horse-card-body h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--saddle);
-      margin-bottom: 0.2rem;
-    }
-    .horse-meta {
-      font-size: 0.75rem;
-      color: var(--light-text);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-    }
-    .horse-card-body p {
-      font-size: 0.88rem;
-      color: #e8dcc8;
-      line-height: 1.65;
-      font-weight: 300;
-      margin-bottom: 1.2rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .btn-sponsor {
-      display: block;
-      width: 100%;
-      background: var(--hay);
-      color: var(--dark);
-      text-align: center;
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 0.85rem;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
+    .horse-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.5s; }
+    .horse-card:hover .horse-card-img { transform: scale(1.04); }
+    .species-tag { position: absolute; top: 0.8rem; left: 0.8rem; background: var(--earth); color: #fff; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.7rem; }
+    .sponsored-tag { position: absolute; top: 0.8rem; right: 0.8rem; background: var(--sage); color: #fff; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; }
+    .horse-card-body { padding: 1.2rem 1.4rem 1.5rem; }
+    .horse-card-body h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--saddle); margin-bottom: 0.2rem; }
+    .horse-meta { font-size: 0.75rem; color: var(--light-text); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    .horse-card-body p { font-size: 0.88rem; color: #e8dcc8; line-height: 1.65; font-weight: 300; margin-bottom: 1.2rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .btn-sponsor { display: block; width: 100%; background: var(--hay); color: var(--dark); text-align: center; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.85rem; border: none; cursor: pointer; transition: background 0.2s; }
     .btn-sponsor:hover { background: var(--saddle); color: #fff; }
     .btn-sponsor.sponsored { background: var(--sage); color: #fff; cursor: default; }
 
-    /* ── MODAL ── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(44,31,14,0.7);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(13,8,4,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 1.5rem; }
     .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: #2a1d0e;
-      max-width: 700px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      animation: fadeUp 0.3s ease;
-    }
-    .modal-img {
-      width: 100%;
-      max-height: 360px;
-      object-fit: cover;
-      display: block;
-    }
+    .modal { background: #2a1d0e; max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; animation: fadeUp 0.3s ease; }
+    .modal-img { width: 100%; max-height: 380px; object-fit: cover; display: block; }
+    .modal-img-killpen { width: 100%; max-height: 280px; object-fit: cover; display: block; margin-bottom: 1rem; border: 2px solid #5a4020; }
+    .modal-killpen-label { font-size: 0.7rem; color: var(--light-text); letter-spacing: 0.12em; text-transform: uppercase; text-align: center; padding: 0.4rem; background: #1a1208; margin-bottom: 1.5rem; }
     .modal-body { padding: 2rem 2.5rem 2.5rem; }
-    .modal-body h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--saddle);
-      margin-bottom: 0.3rem;
-    }
-    .modal-meta {
-      font-size: 0.78rem;
-      color: var(--light-text);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      padding-bottom: 1.2rem;
-      border-bottom: 1px solid #4a3520;
-    }
-    .modal-story {
-      font-size: 0.95rem;
-      line-height: 1.85;
-      color: #e8dcc8;
-      font-weight: 300;
-      margin-bottom: 2rem;
-    }
-    .modal-donate-box {
-      background: #1a1208;
-      padding: 1.5rem;
-      text-align: center;
-      border-left: 4px solid var(--hay);
-    }
-    .modal-donate-box p {
-      font-size: 0.85rem;
-      color: var(--light-text);
-      margin-bottom: 1rem;
-    }
-    .modal-donate-box .btn-primary { animation: none; }
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(44,31,14,0.6);
-      color: #fff;
-      border: none;
-      width: 36px;
-      height: 36px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
+    .modal-body h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--saddle); margin-bottom: 0.3rem; }
+    .modal-meta { font-size: 0.78rem; color: var(--light-text); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid #4a3520; }
+    .modal-story { font-size: 0.95rem; line-height: 1.85; color: #e8dcc8; font-weight: 300; margin-bottom: 2rem; }
+    .modal-story p { margin-bottom: 1rem; }
+    .modal-donate-box { background: #1a1208; padding: 1.5rem; text-align: center; border-left: 4px solid var(--hay); }
+    .modal-donate-box p { font-size: 0.85rem; color: var(--light-text); margin-bottom: 1rem; }
+    .donate-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(13,8,4,0.7); color: #fff; border: none; width: 36px; height: 36px; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 10; }
     .modal-close:hover { background: var(--earth); }
 
-    /* ── NO RESULTS ── */
-    .no-results {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--light-text);
-      font-style: italic;
-      display: none;
-      grid-column: 1/-1;
-    }
+    /* MONTHLY GOAL */
+    .goal-box { background: #1a1208; border: 1px solid #4a3520; padding: 1rem 1.5rem; margin-bottom: 1.5rem; }
+    .goal-label { font-size: 0.72rem; color: var(--light-text); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .goal-amount { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--hay); margin-bottom: 0.3rem; }
+    .goal-desc { font-size: 0.78rem; color: var(--light-text); line-height: 1.6; }
 
-    /* ── FOOTER ── */
-    footer {
-      margin-top: 6rem;
-      background: var(--dark);
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 2.5rem 2rem;
-      font-size: 0.78rem;
-      line-height: 1.9;
-      letter-spacing: 0.03em;
-    }
+    /* FOOTER */
+    footer { margin-top: 6rem; background: var(--dark); color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem 2rem; font-size: 0.78rem; line-height: 1.9; }
     footer strong { color: var(--hay); }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(8px); }
-    }
-
-    @media (max-width: 600px) {
-      .modal-body { padding: 1.5rem; }
-      .horse-grid { grid-template-columns: 1fr; }
-    }
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+    @media (max-width: 600px) { .modal-body { padding: 1.5rem; } .horse-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-badge">Equine Rescue &amp; Sanctuary</div>
   <h1>Journey<br/><em>With Equus</em></h1>
@@ -451,36 +124,30 @@
   </div>
 </section>
 
-<!-- ── MISSION ── -->
 <div class="mission">
   <p>Journey With Equus exists to raise awareness around <strong>the gifts horses have to give beyond the saddle</strong> — through equine partnered wellness. These are horses, mules, donkeys, and ponies who, due to age, health, or injury, can no longer be ridden or compete. They come to us. They find safety. They heal. And in return, <strong>they help humans heal too.</strong> Every animal here receives a lifetime of sanctuary, love, and purpose. Your sponsorship makes that possible.</p>
 </div>
 
-<!-- ── HERD ── -->
 <section class="herd-section" id="herd">
   <div class="section-header">
     <h2>Meet Our Herd</h2>
     <p>Click any animal to read their full story and sponsor them.</p>
   </div>
-
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search by name…" oninput="filterHerd()"/>
   </div>
-
   <div class="filters">
-    <button class="filter-btn active" onclick="setFilter('all', this)">All Animals</button>
-    <button class="filter-btn" onclick="setFilter('horse', this)">Horses</button>
-    <button class="filter-btn" onclick="setFilter('mule', this)">Mules</button>
-    <button class="filter-btn" onclick="setFilter('donkey', this)">Donkeys</button>
-    <button class="filter-btn" onclick="setFilter('pony', this)">Ponies</button>
-    <button class="filter-btn" onclick="setFilter('other', this)">Other Animals</button>
-    <button class="filter-btn" onclick="setFilter('needs-sponsor', this)">Needs Sponsor</button>
+    <button class="filter-btn active" onclick="setFilter('all',this)">All Animals</button>
+    <button class="filter-btn" onclick="setFilter('horse',this)">Horses</button>
+    <button class="filter-btn" onclick="setFilter('mule',this)">Mules</button>
+    <button class="filter-btn" onclick="setFilter('donkey',this)">Donkeys</button>
+    <button class="filter-btn" onclick="setFilter('pony',this)">Ponies</button>
+    <button class="filter-btn" onclick="setFilter('other',this)">Other Animals</button>
+    <button class="filter-btn" onclick="setFilter('needs-sponsor',this)">Needs Sponsor</button>
   </div>
-
   <div class="horse-grid" id="horseGrid"></div>
 </section>
 
-<!-- ── MODAL ── -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <button class="modal-close" onclick="closeModalDirect()">✕</button>
@@ -488,19 +155,27 @@
     <div class="modal-body">
       <h2 id="modalName"></h2>
       <div class="modal-meta" id="modalMeta"></div>
+      <div id="modalKillpen" style="display:none">
+        <img class="modal-img-killpen" id="modalKillpenImg" src="" alt=""/>
+        <div class="modal-killpen-label">📍 Where the journey began</div>
+      </div>
       <div class="modal-story" id="modalStory"></div>
+      <div class="goal-box">
+        <div class="goal-label">Monthly Sponsorship Goal</div>
+        <div class="goal-amount" id="modalGoal"></div>
+        <div class="goal-desc" id="modalGoalDesc"></div>
+      </div>
       <div class="modal-donate-box">
-        <p>Your monthly sponsorship covers feed, farrier visits, and veterinary care for <span id="modalNameInline"></span>.</p>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-          <a id="modalPaypalBtn" href="#" target="_blank" class="btn-primary" style="background:#003087;color:#fff;text-decoration:none;">💙 Donate via PayPal</a>
-          <a id="modalVenmoBtn" href="#" target="_blank" class="btn-primary" style="background:#008CFF;color:#fff;text-decoration:none;">Donate via Venmo</a>
+        <p>Your sponsorship directly funds feed, veterinary care, farrier services, and daily love for <span id="modalNameInline"></span>. Every dollar stays right here at the ranch.</p>
+        <div class="donate-btns">
+          <a id="modalPaypalBtn" href="https://paypal.com/donate/?hosted_button_id=PLX4LK7H7E6RA" target="_blank" class="btn-primary" style="background:#003087;color:#fff;animation:none;">💙 Donate via PayPal</a>
+          <a id="modalVenmoBtn" href="https://venmo.com/journeywithequus" target="_blank" class="btn-primary" style="background:#008CFF;color:#fff;animation:none;">Donate via Venmo</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── FOOTER ── -->
 <footer>
   <strong>Journey With Equus</strong><br/>
   Liberty's Legacy Inc. DBA Journey With Equus &nbsp;|&nbsp; 501(c)(3) Non-Profit Organization<br/>
@@ -509,184 +184,397 @@
 </footer>
 
 <script>
-  // ─────────────────────────────────────────────
-  // HORSE DATA
-  // This is where each horse lives.
-  // To add a new horse, copy one block and fill it in.
-  // "donateLink" will be your PayPal/Venmo link for that horse.
-  // ─────────────────────────────────────────────
-  const horses = [
-    {
-      id: 1,
-      name: "Bella",
-      species: "horse",
-      age: "12 years",
-      color: "Bay Mare",
-      sponsored: false,
-      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
-      venmoLink: "https://venmo.com/JourneyWithEquus",
-      photo: "https://images.unsplash.com/photo-1534773728080-33d31da27ae5?w=600&q=80",
-      shortBio: "Bella arrived at our sanctuary severely malnourished, unable to stand on her own. Today she is one of the most affectionate horses in our herd.",
-      fullStory: "Bella came to us in the winter of 2022, found abandoned in a field with no food or water for weeks. She was barely able to stand, her ribs visible through her dull coat. Our team worked around the clock to nurse her back to health with careful feeding, veterinary care, and most importantly — love.\n\nToday, Bella is unrecognizable from the horse we first met. She greets every visitor at the fence with soft nuzzles and has become the unofficial welcoming committee of Journey With Equus. She adores children and has participated in our therapeutic riding program.\n\nYour sponsorship of $50/month covers Bella's monthly hay, grain, and farrier visits. She still has trust issues with new people, but with patience, she shows you her whole heart."
-    },
-    {
-      id: 2,
-      name: "Scout",
-      species: "horse",
-      age: "7 years",
-      color: "Chestnut Gelding",
-      sponsored: false,
-      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
-      photo: "https://images.unsplash.com/photo-1598974357801-cbca100e65d3?w=600&q=80",
-      shortBio: "Scout was seized from a neglect case along with 14 other horses. He's young, playful, and full of energy — he just needs someone in his corner.",
-      fullStory: "Scout was one of 15 horses removed from a property by animal control in 2023. At just 5 years old, he had never been properly handled and was terrified of humans. Through months of patient groundwork and gentle training, Scout transformed into a curious, playful young horse who loves to investigate everything.\n\nHe is currently being trained for light trail riding and has shown an incredible aptitude for learning. Our trainers believe he has the potential to become a therapy horse, given his sensitivity and intelligence.\n\nScout represents the best of what rescue can do — a second chance that becomes a first-class life. Sponsor him for $50/month and help us see just how far he can go."
-    },
-    {
-      id: 3,
-      name: "Dolly",
-      species: "donkey",
-      age: "9 years",
-      color: "Grey Jenny",
-      sponsored: true,
-      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
-      photo: "https://images.unsplash.com/photo-1567611104868-6bee7e283f15?w=600&q=80",
-      shortBio: "Dolly the donkey arrived with overgrown hooves so severe she could barely walk. Now she's the loudest, most lovable personality in the whole sanctuary.",
-      fullStory: "You will hear Dolly before you see her. Her bray echoes across the entire property — a sound that used to represent pain, and now represents pure joy.\n\nDolly arrived with hooves that had gone untrimmed for years, curling upward like elf shoes. The farrier visits that first month were intensive and costly, but Dolly tolerated everything with a stoic patience that amazed us all.\n\nShe is now fully sponsored, but we share her story because she is the heart of our sanctuary. Dolly has bonded deeply with two young mules who arrived frightened and withdrawn — her calm, maternal presence helped them settle faster than any training could."
-    },
-    {
-      id: 4,
-      name: "Major",
-      species: "mule",
-      age: "15 years",
-      color: "Black Mule",
-      sponsored: false,
-      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
-      photo: "https://images.unsplash.com/photo-1553284966-19b8815c7817?w=600&q=80",
-      shortBio: "Major is a big, wise old mule who spent his life working. Now it's our turn to take care of him. He deserves every bit of comfort his senior years can bring.",
-      fullStory: "Major is the elder statesman of Journey With Equus. Estimated at 15 years old, he carries the quiet dignity of an animal who has worked hard his whole life. He was surrendered by a family who could no longer afford his care, and arrived thin but otherwise healthy.\n\nHe doesn't ask for much — a good pile of hay, a gentle scratch behind his long ears, and the company of other animals. He has become a calming anchor for nervous new arrivals, and the younger horses often sleep near him.\n\nAs a senior animal, Major's needs will grow over time. Sponsoring him at $65/month helps us prepare for his veterinary needs as he ages gracefully in the safety of our sanctuary."
-    },
-    {
-      id: 5,
-      name: "Clover",
-      species: "pony",
-      age: "4 years",
-      color: "Palomino Filly",
-      sponsored: false,
-      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
-      photo: "https://images.unsplash.com/photo-1590249336329-cb5a4d9c9a59?w=600&q=80",
-      shortBio: "Clover is our youngest resident — a golden little pony with a personality three times her size. She came to us as an orphan foal and has never known anything but love.",
-      fullStory: "Clover was orphaned at just three weeks old when her mother was unable to survive a difficult birth. She was brought to us by a good Samaritan who found her alone in a pasture, and our team immediately began around-the-clock bottle feeding.\n\nShe imprinted on humans in the best possible way — she sees every person who enters the sanctuary as a potential friend (and snack-giver). Her boldness and curiosity make her a favorite with visitors, though she has a mischievous streak and has been known to untie lead ropes and open latches.\n\nClover will grow into a riding pony and we hope she will one day participate in our youth horsemanship program. Sponsor her for $40/month and watch her grow up!"
-    },
-    {
-      id: 6,
-      name: "Rio",
-      species: "horse",
-      age: "10 years",
-      color: "Grey Gelding",
-      sponsored: false,
-      donateLink: "https://www.paypal.com/donate?hosted_button_id=YOURLINK",
-      photo: "https://images.unsplash.com/photo-1534773728080-33d31da27ae5?w=600&q=80",
-      shortBio: "Rio was used as a breeding stallion and kept isolated his whole life. Learning to be a horse — to play, graze, and have friends — has been his greatest journey.",
-      fullStory: "Rio spent the first decade of his life alone in a stall, used only for breeding and never experiencing the simple joys of being a horse in a herd. When we received him after his former owner's operation was shut down, he didn't know how to interact with other horses — he was fearful, defensive, and deeply lonely.\n\nThe transformation over 18 months has been extraordinary. Watching Rio take his first rolling nap in the sun, or engage in mutual grooming with another gelding for the first time, reminded all of us why this work matters.\n\nRio is now a confident, gentle soul who loves long grooming sessions and carrots. He is a testament to resilience. Your $50/month sponsorship helps us continue his journey."
-    }
-  ];
+// ─────────────────────────────────────────────
+// HERD DATA — add new animals here
+// photo: use filename from your GitHub /photos/ folder
+// killpenPhoto: optional second photo shown inside the story
+// monthlyGoal: dollar amount
+// goalDesc: one line about what covers their care
+// ─────────────────────────────────────────────
+const horses = [
+  {
+    id: 1,
+    name: "Tux",
+    species: "horse",
+    age: "Approximately 11-12 Years Old",
+    color: "Morgan Gelding · Black",
+    sponsored: false,
+    photo: "photos/tux.jpg",
+    monthlyGoal: "$700",
+    goalDesc: "Covers feed, hay, veterinary care, farrier visits, and daily sanctuary for Tux.",
+    shortBio: "Tux came within days of never being known at all. Pulled from a kill pen in Northern Colorado, this stunning black Morgan is now one of our featured equine coaching partners — and he has a particular gift with children.",
+    fullStory: `Tux came within days of never being known at all.
 
-  // ─────────────────────────────────────────────
-  // RENDER & FILTER LOGIC
-  // ─────────────────────────────────────────────
-  let currentFilter = 'all';
+A black Morgan gelding of unknown history, Tux is believed to have spent his early years alongside his companion Lucien — two horses likely raised together, their world upended when their owner passed away and the estate made the painful decision to sell them at auction. They were brought to a local sale in Northern Colorado, one frequented by kill buyers, one that Journey With Equus watches closely.
 
-  function renderGrid(list) {
-    const grid = document.getElementById('horseGrid');
-    grid.innerHTML = '';
-    if (list.length === 0) {
-      grid.innerHTML = '<p class="no-results" style="display:block;grid-column:1/-1;">No animals found. Try a different search!</p>';
-      return;
-    }
-    list.forEach((h, i) => {
-      const card = document.createElement('div');
-      card.className = 'horse-card';
-      card.style.animationDelay = `${i * 0.07}s`;
-      card.innerHTML = `
-        <div class="horse-card-img-wrap">
-          <img class="horse-card-img" src="${h.photo}" alt="${h.name}" loading="lazy"/>
-          <span class="species-tag">${h.species}</span>
-          ${h.sponsored ? '<span class="sponsored-tag">✓ Sponsored</span>' : ''}
-        </div>
-        <div class="horse-card-body">
-          <h3>${h.name}</h3>
-          <div class="horse-meta">${h.color} &nbsp;·&nbsp; ${h.age}</div>
-          <p>${h.shortBio}</p>
-          <button class="btn-sponsor ${h.sponsored ? 'sponsored' : ''}"
-            onclick="openModal(${h.id})"
-            ${h.sponsored ? '' : ''}>
-            ${h.sponsored ? '✓ Fully Sponsored' : `Sponsor ${h.name}`}
-          </button>
-        </div>`;
-      grid.appendChild(card);
-    });
+But on that particular day, nobody was watching.
+
+Both boys were purchased by a kill buyer and moved to a kill pen — a holding pen where horses wait for a fate most people never hear about. A short window of time. A long, crowded trailer ride with no food or water. A journey to Mexico with no return. That was the road Tux was on.
+
+When we found out, we couldn't let it happen. Not to a Morgan. Not to him.
+
+Fast forward three to four years, and Tux is unrecognizable from the horse standing in that kill pen. He is safe. He is loved. And he has found his purpose. Tux is one of our equine coaching partners, working alongside our team to help humans heal — and he has a particular gift with children. Something about him meets kids exactly where they are.
+
+His name carries even more meaning here. Tux is named in honor of Windtuck Formal Attire — known as Tux — a beloved black Morgan who graced the life of our founder for over twenty-four years. To have another black Morgan carry that name forward feels less like coincidence and more like a gift.
+
+He made it. And now he helps others do the same.`
+  },
+  {
+    id: 2,
+    name: "Lucien",
+    species: "horse",
+    age: "Approximately 11-12 Years Old",
+    color: "Morgan Gelding · Bay",
+    sponsored: false,
+    photo: "photos/lucien.jpg",
+    monthlyGoal: "$700",
+    goalDesc: "Covers feed, hay, veterinary care, farrier visits, and daily sanctuary for Lucien.",
+    shortBio: "Lucien's story begins exactly where Tux's does. Pulled from the same kill pen, this big beautiful bay Morgan is now one of our featured equine coaching partners — and the first one to meet everybody at the fence.",
+    fullStory: `Lucien's story begins exactly where Tux's does — because for a time, they shared the same fate.
+
+Believed to have been raised together from the beginning, Lucien and Tux were sold at the same Northern Colorado auction, purchased by the same kill buyer, and moved to the same kill pen. Two companions, side by side, waiting for a miracle that wasn't guaranteed to come.
+
+It came.
+
+Lucien is a big, thick, beautiful bay Morgan gelding with a presence that fills a room — or a pasture. Where his companion Tux can take a little time to warm up, Lucien has never met a stranger in his life. The moment anyone approaches the fence, he is already there. Head up, ears forward, looking for love, a treat, and a conversation. He doesn't wait to be invited. He just shows up — fully, warmly, and without hesitation.
+
+That quality makes him extraordinary in our equine coaching program. Lucien is one of our featured equine partnered wellness coaches, and what he offers people is immediate. He doesn't make you earn his trust first. He just gives it — and in doing so, he quietly shows people what it feels like to be met exactly as they are.
+
+He came to us from the edge of the unthinkable. Now he stands at the fence every single day, reminding everyone who visits that showing up with an open heart changes everything.`
+  },
+  {
+    id: 3,
+    name: "Versailles",
+    species: "horse",
+    age: "Estimated Mid-Twenties",
+    color: "Stallion · Possibly Morgan, Arabian, or Spanish Barb · Dark Bay",
+    sponsored: false,
+    photo: "photos/versailles.jpg",
+    monthlyGoal: "$700",
+    goalDesc: "Covers feed, hay, veterinary care, specialized senior care, and daily sanctuary for Versailles.",
+    shortBio: "Versailles is our only stallion — regal, gentle, and a survivor. Pulled from a massive kill pen alongside his brother, this possible Spanish Barb has not a mean bone in his body. He is now living the retirement he always deserved.",
+    fullStory: `Some horses arrive and take your breath away. Versailles was one of them — though not for the reasons you might expect.
+
+Versailles is believed to have spent much of his life as a breeding stallion. At some point, either through circumstance or abandonment, he and his brother were dumped at auction, purchased by a kill buyer, and thrown into a large kill pen alongside thirty, forty, sometimes fifty other horses — stallions, mares, geldings, and babies all crowded together. A situation that, by its very nature, makes for chaos and danger.
+
+When we first laid eyes on him and his brother, we couldn't believe what we were seeing. These beautiful, regal horses — possibly Morgan, possibly Arabian, and according to the remarkable veterinary team at Littleton Equine Hospital, possibly something even rarer: a Spanish Barb — standing in conditions no horse should ever know.
+
+We fell in love immediately. And with the generosity of our donors, we pulled them both.
+
+When Versailles arrived he was battered and broken. Edema covered his body from bites and kicks. It was clear he was not a fighter — had never been. And yet from his very first day with us, sick as he was, he allowed us to handle him, doctor him, treat his wounds — sometimes without even a halter. A stallion. In pain. And still, not a mean bone in his body.
+
+We nursed him back to health and brought him home to the ranch with every intention of having him gelded so he could live freely among the herd. We raised the money. We made the appointment at Littleton Equine Hospital — chosen specifically because we knew a stallion of his age needed the safety of an in-house surgical facility should anything go wrong. We did everything right.
+
+And then the bloodwork came back.
+
+Enough was going on — some respiratory concerns, some age-related complications — that the veterinary team looked at us and said, if you don't have to do this, don't. The risk simply wasn't worth it.
+
+So we loaded him up and brought him home. A stallion he remains.
+
+Being a stallion means Versailles lives a little differently than the rest of the herd. He doesn't get to roam freely with the others, but he has a beloved gelding companion next door, and this summer we hope to give them their very own shared turnout together. He is loved. He is cherished. He is handled daily with a gentleness that matches his own.
+
+You would never know this horse is intact. You would never know what he survived. You would only know that when you stand next to him, something in you goes quiet — and something in him comes forward to meet it.
+
+Versailles didn't get the life he deserved in his early years. He gets it now.`
+  },
+  {
+    id: 4,
+    name: "Othello",
+    species: "horse",
+    age: "Over 20 Years Old",
+    color: "Morgan Gelding · Dark Bay · Special Needs",
+    sponsored: false,
+    photo: "photos/othello.jpg",
+    monthlyGoal: "$700",
+    goalDesc: "Covers feed, hay, specialized Cushing's management, holistic care, farrier visits, and daily sanctuary for Othello.",
+    shortBio: "A well-known Morgan show horse whose years in the ring left him more scarred than celebrated. Othello now stalls next to Versailles and is slowly learning — on his own terms — that people can be safe after all.",
+    fullStory: `Othello almost didn't make it — not because of a kill buyer or an auction, but because of a decision made over a moving truck.
+
+His owner, an elderly woman who had kept Othello and a mare he'd spent most of his life alongside, decided when it came time to move that the simplest solution was to have them both shot and buried. To be clear — this is a legal and sometimes humane form of euthanasia, one that many horse owners choose. But these two horses were healthy. They were thriving. And her nephew couldn't bring himself to let that happen.
+
+He said no.
+
+He found a home for the mare. He kept Othello himself. But life brought a change — a move, a new chapter — and Othello needed a new path forward.
+
+A dear friend of Journey With Equus stepped up to foster him. We hoped — the way you always hope — that it might become permanent. It didn't work out that way. And so Othello came home to us, to live out the rest of his days in the place he was always meant to find.
+
+He now stalls right next to Versailles. After everything, they have become each other's companions.
+
+Othello was once a well known Morgan show horse. He drove on a multiple horse team. He competed in the show ring. By any outside measure, you might assume his life was one of privilege and polish.
+
+But here is what Othello tells us himself — because horses always tell the truth if you're willing to listen: he is scared of people. Not aggressive. Not mean. Just scared. He wants to move away as quickly as he can. And once you understand that, once you sit with it, you realize what it means. All those years in the show ring were not years of being pampered and loved. They were years of expectation. Of performance. Of having to be something for someone else.
+
+That is exactly why Journey With Equus exists.
+
+Not just to rescue horses from kill pens and auctions — but to rescue them from a lifetime of never being enough. To give them retirement. To give them compassion. To let them simply be.
+
+Othello also lives with advanced Cushing's disease — a condition of the pituitary gland that affects him in ways you can see. His coat grows long and doesn't shed out the way other horses do. He carries a telltale pot belly. As he ages, he becomes more susceptible to founder, a painful hoof condition we watch for carefully. These are real challenges that require real attention every single day.
+
+We address Othello's needs the same way we approach so many of our horses — naturally. Through homeopathic, herbal, and holistic modalities that support his body gently and without unnecessary intervention. It is a philosophy that guides much of how we care for our herd.
+
+Othello doesn't owe anyone a performance anymore. Here, he just gets to be Othello.
+
+And slowly — in his own time, on his own terms — he is learning that people can be safe after all.`
+  },
+  {
+    id: 5,
+    name: "Dazzled",
+    species: "horse",
+    age: "Approximately 15 Years Old",
+    color: "Thoroughbred Mare · Bay",
+    sponsored: false,
+    photo: "photos/dazzled.jpg",
+    killpenPhoto: "photos/dazzled_killpen.jpg",
+    monthlyGoal: "$700",
+    goalDesc: "Covers feed, hay, specialized hoof care, veterinary monitoring, and daily sanctuary for Dazzled.",
+    shortBio: "Found emaciated in a kill pen, Dazzled reached through the fence to love on a small child even as she was running out of time. That moment of connection saved her life. Today she is breathtakingly beautiful — and proof that advocacy changes everything.",
+    fullStory: `Dazzled came into this world running. As an off the track Thoroughbred, speed was her first language — the thunder of hooves, the roar of a crowd, the singular purpose of racing. When her racing days ended, she found a second career, and we believe several years as a broodmare followed. She gave what she had. And then, somewhere along the way, the world stopped making room for her.
+
+She arrived in a kill pen — emaciated, carrying an old knee injury likely born from her racing days, and bearing a severe wound just above the coronet band of her left rear hoof. By every outward measure, she was running out of time.
+
+And then someone posted a video.
+
+In it, a little girl — the kill buyer's own daughter, no more than four or five years old — was standing at the very top of the fence, reaching over to love on this mare. And Dazzled, thin and exhausted and out of hope, was reaching back. Even then. Even there. She was still looking for human connection.
+
+That was it for us.
+
+We work alongside an incredible organization that focuses specifically on rescuing Thoroughbreds from kill pens and bringing them into care. At the time we had room, and Dazzled made her way to quarantine. She was sick. She was thin. And we began to notice something — she was spending a significant amount of time lying down. Not colicking. Still eating. Still present. But down.
+
+When the call came from our quarantine provider expressing concern that Dazzled might be actively foundering, we remembered something she had mentioned early on — that this mare may have had previous founder episodes. We asked the question that needed to be asked: if you believed she had foundered before, and now you think she's foundering again, let's get a vet out and get X-rays of those front feet and find out what we're actually dealing with.
+
+The vet arrived. And instead of X-rays, we received a phone call asking us to euthanize her.
+
+Three strikes, we were told. The arthritic knee — likely a bone chip from her racing career. The old injury on the rear hoof. And whatever was happening with her front feet. We asked to see the X-rays. We were told the machine wasn't on the truck that day — and that it would be a week before he could return.
+
+A week.
+
+We said we were not willing to euthanize this mare without understanding what was actually going on. What followed was not a conversation — it was a lesson in how some professionals in the horse industry view animals like Dazzled. Horses that can no longer be ridden. Horses that have come through the slaughter pipeline. To some, they simply have no value. The idea of spending time and money to give them a fighting chance at a healthy retirement is something they genuinely cannot comprehend.
+
+We comprehend it just fine.
+
+After what can only be described as an extraordinarily difficult conversation, the vet left the property. We immediately made arrangements to move Dazzled to our regular quarantine provider, where our trusted veterinary team came out and did exactly what we had asked for — X-rays.
+
+What they found was not active founder. It was a large cavity in her left front foot, the result of ongoing abscesses that had gone undetected and untreated. The infection had dried up, but the damage remained — and it was the source of every bit of her pain.
+
+Pads were applied to protect her feet. No further infection could enter. And Dazzled healed.
+
+She came home to the ranch.
+
+She is now one of the kindest, sweetest, most breathtakingly beautiful mares we have ever had the privilege of knowing. When we think about how close she came — it is almost too much to hold.
+
+We share Dazzled's story not just because it is hers, but because it is a story we see repeated in this work far too often. Abscesses are a recurring and frequently overlooked cause of lameness in rescue horses. They are treatable. They are manageable. But they require someone willing to ask the next question.
+
+Always ask the next question. Trust your intuition. Death is final — and these animals deserve every chance before we arrive at that door.
+
+Dazzled is proof of what happens when someone refuses to stop asking.`
+  },
+  {
+    id: 6,
+    name: "Sprinkles (aka Dinky)",
+    species: "pony",
+    age: "4-5 Years Old",
+    color: "Miniature Horse Gelding · Dark Chocolate Palomino",
+    sponsored: false,
+    photo: "photos/sprinkles.jpg",
+    killpenPhoto: "photos/sprinkles_baby.jpg",
+    monthlyGoal: "$700",
+    goalDesc: "Covers specialized feed, farrier care, veterinary monitoring, and daily sanctuary for Sprinkles.",
+    shortBio: "Sprinkles didn't arrive at Journey With Equus the way most animals do. He arrived before he even existed — tucked safely inside his mama's belly. Born a dwarf with crooked legs, he is now the official ambassador of our barn.",
+    fullStory: `Sprinkles didn't arrive at Journey With Equus the way most of our animals do. He arrived before he even existed — tucked safely inside his mama's belly, on a trailer headed north from a kill pen in Mississippi.
+
+We had been involved in the rescue of five miniature horses — three little mares and two stallions — all pulled from a kill pen and brought into our care. Once everyone was healthy and settled, the stallions were gelded. And one of our little mares — a breathtaking chestnut with a flaxen mane and tail that dragged the ground, a Barbie doll of a pony if ever there was one, we named her Cupcake — was hiding a secret.
+
+We had a sneaking suspicion. We did the testing. Sure enough, a baby was on the way.
+
+Cupcake was safe. She was loved. And whatever had happened before she found us, her baby was going to be born into something different.
+
+But nothing about Sprinkles' arrival was easy.
+
+Cupcake was a maiden mare — this was her very first foal. And as sweet as she is, she wanted very little to do with him. She kicked at him. She was resistant when he tried to nurse. In the middle of a move, with resources stretched thin, an extraordinarily dedicated foster with years of experience stepped in and worked tirelessly — hour after hour — to help Cupcake accept her baby and allow him to nurse.
+
+And then we got a closer look at the little man himself.
+
+Sprinkles is a dwarf. We believe his father is Tater Tot, one of the little stallions from that same Mississippi rescue, and the genetics told a story his tiny body confirmed. The good news — he has none of the severe deformities that can accompany dwarfism in miniature horses. But his back legs were a different matter. They came into this world bent in ways that needed intervention — and fast.
+
+We raised the money for specialized glue-on shoes, custom made and carefully applied every eight to ten days at over four hundred dollars each time. It was an investment in a life that hadn't even had a chance to begin. The risk, if we did nothing, was that his developing bones would collapse on themselves entirely.
+
+We did something.
+
+Today Sprinkles is strong. He is healthy. He is still a little different in his conformation — still uniquely, perfectly himself — but he moves through the world with a confidence that makes you forget everything he overcame to get here.
+
+He is a dark, rich chocolate palomino — that deep chocolatey coat set against the creamiest, lightest mane and tail you have ever seen. And every single morning he takes his post at the barn entrance, greeting every visitor who walks through — ears up, eyes bright, absolutely certain that whoever just arrived came specifically to see him.
+
+He is usually right.
+
+He is also absolutely certain that peppermint treats are a basic right, not a privilege, and he will make sure you know it.
+
+Sprinkles aka Dinky — born against the odds, raised by a village, and now the official ambassador of Journey With Equus. We wouldn't have it any other way.`
+  },
+  {
+    id: 7,
+    name: "Tater Tot",
+    species: "pony",
+    age: "Adult · Age Unknown",
+    color: "Miniature Horse Gelding · Black and White Paint",
+    sponsored: false,
+    photo: "photos/tatertot.jpg",
+    monthlyGoal: "$700",
+    goalDesc: "Covers feed, farrier care, veterinary care, and daily sanctuary for Tater Tot.",
+    shortBio: "Tater Tot came to us from a Mississippi kill pen — one of five miniature horses we rescued. We are 99% certain this bold little black and white paint is Sprinkles' father. And here at Journey With Equus, this family never has to be separated.",
+    fullStory: `Tater Tot came to us as part of the same group of five miniature horses pulled from a kill pen in Mississippi. He was one of the two stallions in that little herd — and if we are ninety nine percent certain about anything, it is that this little black and white paint is Sprinkles' father.
+
+He arrived with the others, was gelded once everyone was healthy and settled, and has been making his presence known ever since.
+
+Of all five miniatures, Tater Tot has been the least trusting of people. And that is okay. That is his story to tell on his own timeline. Horses who have been through what he has been through get to decide when they are ready — and we are never in a rush. What we can tell you is that he has come a long way. He makes his way into the barn now with growing confidence, and he has learned something very important.
+
+Peppermint treats are worth showing up for.
+
+But here is what makes Tater Tot's story something truly special. He and Sprinkles share the same pen. Father and son, side by side, every single day. They are inseparable — and at Journey With Equus, that is exactly how it will stay.
+
+In a world where horses are bought, sold, separated, and forgotten, here is a family that never has to say goodbye.
+
+We think that says everything.`
+  },
+  {
+    id: 8,
+    name: "Eclipse",
+    species: "horse",
+    age: "Approximately 20 Years Old",
+    color: "Paint Mare · Black and White",
+    sponsored: false,
+    photo: "photos/eclipse.jpg",
+    monthlyGoal: "$700",
+    goalDesc: "Covers feed, hay, veterinary monitoring, holistic pain management, farrier care, and daily sanctuary for Eclipse.",
+    shortBio: "Eclipse came to us straight from auction — never having to know a kill pen. For years she lived her best life in our large pasture herd. Now she's in our barn as we work tirelessly to find answers for her knee. She has opinions about grain time and she will make sure everyone knows it.",
+    fullStory: `Eclipse came to us the way we always hope it happens — before the worst could.
+
+We were able to purchase her at auction with the help of our incredible donors, which means Eclipse never set foot in a kill pen. She never had to wait and wonder. She came straight from the auction into safety, into love, and into a life she deserved.
+
+And what a life it has been. For years Eclipse lived out in our large pasture with a big herd of horses around her — a family, a community, room to roam. She was thriving. She was happy. She was exactly where she was supposed to be.
+
+We had known from the beginning that she had something going on with one of her knees. It was manageable. It was something we watched. And for a long time, watching was enough.
+
+In the last six months, that changed.
+
+The progression in her knee brought Eclipse in from the pasture and into a stall with a run — a big adjustment for a mare who had known open space and herd life. We are working closely with both our veterinarians and our natural and holistic practitioners to understand exactly what is happening, to explore every possible avenue for pain relief, and to find a path forward that gives her both longevity and quality of life.
+
+These cases are among the hardest we face. We will exhaust every effort — every option, every modality, every possibility — before we ever consider anything else. That is our promise to every animal in our care. But we also believe in honesty, because you deserve to know the full picture of what caring for these horses really looks like. Sometimes rescue means fighting for more time. And sometimes, when we have done everything we can, we are faced with the most difficult decision in this work.
+
+For now, Eclipse is fighting. And so are we.
+
+What we can tell you is that this mare has absolutely no interest in being somber about any of it. Eclipse has opinions about grain time, and she will make sure the entire barn knows it. She talks. She carries on. She stands at her stall — not so patiently — letting everyone within earshot know that her grain is late, it has always been late, and something really should be done about it.
+
+She is funny. She is sweet. She is loved beyond measure.
+
+We are hopeful. We are working. And we are grateful every single day that she never had to know the inside of a kill pen — that her story with us began with safety, and that whatever chapter comes next, it will be written here, surrounded by people who love her.`
+  }
+];
+
+// ─────────────────────────────────────────────
+// RENDER & FILTER
+// ─────────────────────────────────────────────
+let currentFilter = 'all';
+
+function renderGrid(list) {
+  const grid = document.getElementById('horseGrid');
+  grid.innerHTML = '';
+  if (list.length === 0) {
+    grid.innerHTML = '<p style="display:block;grid-column:1/-1;text-align:center;padding:4rem;color:var(--light-text);font-style:italic;">No animals found. Try a different search!</p>';
+    return;
+  }
+  list.forEach((h, i) => {
+    const card = document.createElement('div');
+    card.className = 'horse-card';
+    card.style.animationDelay = `${i * 0.07}s`;
+    card.innerHTML = `
+      <div class="horse-card-img-wrap">
+        <img class="horse-card-img" src="${h.photo}" alt="${h.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1553284965-5dd02b87378e?w=600&q=80'"/>
+        <span class="species-tag">${h.species}</span>
+        ${h.sponsored ? '<span class="sponsored-tag">✓ Sponsored</span>' : ''}
+      </div>
+      <div class="horse-card-body">
+        <h3>${h.name}</h3>
+        <div class="horse-meta">${h.color} &nbsp;·&nbsp; ${h.age}</div>
+        <p>${h.shortBio}</p>
+        <button class="btn-sponsor ${h.sponsored ? 'sponsored' : ''}" onclick="openModal(${h.id})">
+          ${h.sponsored ? '✓ Fully Sponsored' : `Read ${h.name}'s Story`}
+        </button>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function filterHerd() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  let list = horses;
+  if (currentFilter === 'needs-sponsor') list = list.filter(h => !h.sponsored);
+  else if (currentFilter === 'other') list = list.filter(h => !['horse','mule','donkey','pony'].includes(h.species));
+  else if (currentFilter !== 'all') list = list.filter(h => h.species === currentFilter);
+  if (query) list = list.filter(h => h.name.toLowerCase().includes(query));
+  renderGrid(list);
+}
+
+function setFilter(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterHerd();
+}
+
+// ─────────────────────────────────────────────
+// MODAL
+// ─────────────────────────────────────────────
+function openModal(id) {
+  const h = horses.find(x => x.id === id);
+  if (!h) return;
+  document.getElementById('modalImg').src = h.photo;
+  document.getElementById('modalImg').alt = h.name;
+  document.getElementById('modalName').textContent = h.name;
+  document.getElementById('modalMeta').textContent = `${h.color} · ${h.age}`;
+  document.getElementById('modalStory').innerHTML = h.fullStory.split('\n\n').map(p => `<p>${p}</p>`).join('');
+  document.getElementById('modalNameInline').textContent = h.name;
+  document.getElementById('modalGoal').textContent = h.monthlyGoal + ' / month';
+  document.getElementById('modalGoalDesc').textContent = h.goalDesc;
+
+  // Kill pen photo
+  const killpenDiv = document.getElementById('modalKillpen');
+  if (h.killpenPhoto) {
+    document.getElementById('modalKillpenImg').src = h.killpenPhoto;
+    killpenDiv.style.display = 'block';
+  } else {
+    killpenDiv.style.display = 'none';
   }
 
-  function filterHerd() {
-    const query = document.getElementById('searchInput').value.toLowerCase().trim();
-    let list = horses;
-    if (currentFilter === 'needs-sponsor') list = list.filter(h => !h.sponsored);
-    else if (currentFilter === 'other') list = list.filter(h => !['horse','mule','donkey','pony'].includes(h.species));
-    else if (currentFilter !== 'all') list = list.filter(h => h.species === currentFilter);
-    if (query) list = list.filter(h => h.name.toLowerCase().includes(query));
-    renderGrid(list);
+  // Sponsored state
+  const paypalBtn = document.getElementById('modalPaypalBtn');
+  const venmoBtn = document.getElementById('modalVenmoBtn');
+  if (h.sponsored) {
+    paypalBtn.textContent = '✓ Fully Sponsored — Thank You!';
+    paypalBtn.style.background = '#3d7a52';
+    paypalBtn.style.pointerEvents = 'none';
+    venmoBtn.style.display = 'none';
+  } else {
+    paypalBtn.innerHTML = '💙 Donate via PayPal';
+    paypalBtn.style.background = '#003087';
+    paypalBtn.style.pointerEvents = '';
+    venmoBtn.style.display = '';
   }
 
-  function setFilter(type, btn) {
-    currentFilter = type;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filterHerd();
-  }
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal').scrollTop = 0;
+}
 
-  // ─────────────────────────────────────────────
-  // MODAL
-  // ─────────────────────────────────────────────
-  function openModal(id) {
-    const h = horses.find(x => x.id === id);
-    if (!h) return;
-    document.getElementById('modalImg').src = h.photo;
-    document.getElementById('modalImg').alt = h.name;
-    document.getElementById('modalName').textContent = h.name;
-    document.getElementById('modalMeta').textContent = `${h.species.charAt(0).toUpperCase()+h.species.slice(1)} · ${h.color} · ${h.age}`;
-    document.getElementById('modalStory').innerHTML = h.fullStory.split('\n\n').map(p => `<p style="margin-bottom:1rem">${p}</p>`).join('');
-    document.getElementById('modalNameInline').textContent = h.name;
-    const paypalBtn = document.getElementById('modalPaypalBtn');
-    const venmoBtn = document.getElementById('modalVenmoBtn');
-    if (h.sponsored) {
-      paypalBtn.textContent = '✓ Fully Sponsored — Thank You!';
-      paypalBtn.style.background = '#3d7a52';
-      paypalBtn.style.pointerEvents = 'none';
-      venmoBtn.style.display = 'none';
-    } else {
-      paypalBtn.href = h.donateLink || '#';
-      paypalBtn.innerHTML = '💙 Donate via PayPal';
-      paypalBtn.style.background = '#003087';
-      paypalBtn.style.pointerEvents = '';
-      venmoBtn.href = h.venmoLink || '#';
-      venmoBtn.innerHTML = 'Donate via Venmo';
-      venmoBtn.style.display = '';
-    }
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
 
-  function closeModal(e) {
-    if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
-  }
-  function closeModalDirect() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
-
-  // Init
-  renderGrid(horses);
+renderGrid(horses);
 </script>
 </body>
 </html>
